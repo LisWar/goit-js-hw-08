@@ -6,7 +6,6 @@ const storageKey = "feedback-form-state";
 updateOutput(storageKey);
 
 form.addEventListener("input", _.throttle(function(e) {
-    console.log('e: ', e.currentTarget);
     handleInput(e)
     }, 500));
 form.addEventListener("submit", handleSubmit);
@@ -17,9 +16,8 @@ console.log('localStorage.getItem(storageKey): ', localStorage.getItem(storageKe
 
 
 function handleInput(e) {
-
-    const {elements: { email, message }} = e.currentTarget;
-    const data = {"email": email.value, "message": message.value.trim()};
+    const data = {"email": form.elements.email.value, "message": form.elements.message.value.trim()};
+    console.log('data: ', data);
 
     save(storageKey, data);
 }
