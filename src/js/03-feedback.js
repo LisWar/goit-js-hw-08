@@ -17,7 +17,6 @@ console.log('localStorage.getItem(storageKey): ', localStorage.getItem(storageKe
 
 function handleInput(e) {
     const data = {"email": form.elements.email.value, "message": form.elements.message.value.trim()};
-    console.log('data: ', data);
 
     save(storageKey, data);
 }
@@ -26,8 +25,10 @@ function handleSubmit(e) {
     e.preventDefault()
     const {elements: { email, message }} = e.currentTarget;
 
-    console.log(localStorage.getItem(storageKey));   
-    localStorage.removeItem(storageKey);
+    if (email.value == "" || message.value == "") {
+        alert("Заповніть обидва поля перед подачею.")
+        return;
+    }
     email.value = "";
     message.value = "";
 }
